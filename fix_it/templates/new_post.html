@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h4>Fill out the fields. Let the community take care of the rest.</h4>
+    <form enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+    {#    {% for field in new_post %}#}
+    {#    <h4>{{ field.name }}</h3><br>#}
+    {#        {{ field }}#}
+    {#    {% endfor %}#}
+        {{ new_post.as_ul }}
+        <input type="submit" value="Submit comment" />
+    </form>
+{% endblock content %}
+

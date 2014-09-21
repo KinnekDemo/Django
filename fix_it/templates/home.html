@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+  <div class="container">
+      <h1>LifeOverflow</h1>
+      <p style="text-align: center">Help a friend. Become a professional.</p>
+      <p style="text-align: center"><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
+  </div>
+</div>
+
+{# Wrap this in a div#}
+    {% for post in posts %}
+        <h3>{{ post.title }}</h3>
+        {% if post.image %}
+        <img src="{{ post.image.url }}" alt="/Users/GKadillak/Projects/help/fix_it/static/media/img/mk.jpg">
+            <br>
+            <br>
+        {% endif %}
+
+        <p>{{ post.body }}</p>
+
+        {% for help in post.comments.all %}
+            {{ user.username }} says:<br>
+            <li>{{ help.comment }}</li>
+            {% if help.voted == True %}
+            {% else %}
+                <a href="{% url 'up_vote' help.id %}">Up vote</a>
+                <a href="{% url 'up_vote' help.id %}">Down Vote</a>
+            {% endif %}
+
+        {% endfor %}
+
+    {% endfor %}
+{% endblock %}

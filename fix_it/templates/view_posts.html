@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {# Wrap this in a div#}
+    {% for post in posts %}
+    <div style="background-color: white; width: 70%; margin: auto; ">
+        <h3>{{ post.title }}</h3>
+        {% if post.image %}
+        <img src="{{ post.image.url }}">
+            <br>
+            <br>
+        {% endif %}
+
+        <p>{{ post.body }}</p>
+
+        {% for help in post.comments.all %}
+            {{ user.username }} says:<br>
+            <li>{{ help.comment }}</li>
+        {% endfor %}
+    </div>
+
+    {% endfor %}
+{% endblock %}
