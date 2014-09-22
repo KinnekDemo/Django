@@ -10,6 +10,7 @@ from geopy.geocoders import Nominatim
 
 def front(request):
     posts = Post.objects.all()
+    certain_post = Post.objects.get(id=1)
     comments = Annotate.objects.all()
     data = {
         'posts': posts,
@@ -17,11 +18,16 @@ def front(request):
     }
     # Trying out folium
     geolocator = Nominatim()
-    for post in posts:
-        location = geolocator.geocode(post.location)
-        map_osm = folium.Map(location=[45.5236, -122.6750])
-        map_osm.simple_marker([location.latitude], [location.longitude], popup=post.title)
-        map_osm.create_map(path='testmap.html')
+    # for post in posts:
+    #     location = geolocator.geocode(post.location)
+    #     map_osm = folium.Map(location=[45.5236, -122.6750])
+    #     map_osm.simple_marker([location.latitude], [location.longitude], popup=post.title)
+    #     map_osm.create_map(path='testmap.html')
+
+    location = geolocator.geocode(certain_post.location)
+    map_osm = folium.Map(location=[45.5236, -122.6750])
+    map_osm.simple_marker([location.latitude, location.longitude], popup='Test time!')
+    map_osm.create_map(path='testmap.html')
 
     return render(request, 'home.html', data)
 

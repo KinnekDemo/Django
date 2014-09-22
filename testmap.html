@@ -36,6 +36,10 @@ L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
+var marker_1 = L.marker([40.5727615357, -105.119423786]);
+marker_1.bindPopup("Test time!");
+map.addLayer(marker_1)
+
 
 
 
