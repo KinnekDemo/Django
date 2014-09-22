@@ -7,16 +7,23 @@ class Post(models.Model):
     body = models.TextField()
     image = models.ImageField(upload_to='img', blank=True, null=True)
     author = models.ForeignKey(User, related_name='posts', default='')
+    location = models.CharField(max_length=50, null=True)
+
 
     def __unicode__(self):
-        return "{}".format(self.body)
+        return "{}".format(self.title)
 
 
 class Annotate(models.Model):
     comment = models.TextField()
     post = models.ForeignKey(Post, related_name='comments')
-    voted = models.IntegerField(default=0)
-    up_voted = models.BooleanField(default=False)
+    author = models.ForeignKey(User, related_name='annotations', default='1', blank=True, null=True)
+    total_votes = models.IntegerField(default=0)
+    up_votes = models.SmallIntegerField(default=0)
+    down_votes = models.SmallIntegerField(default=0)
+    thumb_up = models.BooleanField(default=False)
+    thumb_down = models.BooleanField(default=False)
+
 
     def __unicode__(self):
         return "{}".format(self.post)

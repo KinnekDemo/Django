@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block content %}
-    {# Wrap this in a div#}
+    <div class="post_body">
     {% for post in posts %}
-    <div style="background-color: white; width: 70%; margin: auto; ">
         <h3>{{ post.title }}</h3>
+
         {% if post.image %}
-        <img src="{{ post.image.url }}">
+        <img src="{{ post.image.url }}" alt="/Users/GKadillak/Projects/help/fix_it/static/media/img/mk.jpg">
             <br>
             <br>
         {% endif %}
@@ -14,10 +15,26 @@
         <p>{{ post.body }}</p>
 
         {% for help in post.comments.all %}
-            {{ user.username }} says:<br>
-            <li>{{ help.comment }}</li>
+            <div>
+            {% if help.thumb_up %}
+                <a href="{% url 'down_vote' help.id %}" style="float: left; position: relative"><img src="{% static 'img/arrow_down.png' %}" style="width: 15px; height: 14px"></a>{{ help.up_votes }}
+            {% elif help.thumb_down %}
+                <a href="{% url 'up_vote' help.id %}" style="float: left"><img src="{% static 'img/arrow_up.png' %}" style="width: 16px; height: 18px"></a>{{ help.up_votes }}
+            {% else %}
+                <a href="{% url 'up_vote' help.id %}" style="float: left"><img src="{% static 'img/arrow_up.png' %}" style="width: 15px; height: 14px"></a>{{ help.up_votes }}
+
+                <a href="{% url 'down_vote' help.id %}" style="float: left"><img src="{% static 'img/arrow_down.png' %}" style="width: 15px; height: 14px"></a>{{ help.up_votes }}
+            {% endif %}
+            {{ help.author }} says:<br>
+            <p style="display: inline">{{ help.comment }}</p>
+
+            {# Show thumb up, thumb down, or both depending on vote boolean#}
+
+            </div> <br>
         {% endfor %}
-    </div>
+
+    <a href="{% url 'new_comment' post.id %}">Help fix this problem!</a>
 
     {% endfor %}
+    </div>
 {% endblock %}

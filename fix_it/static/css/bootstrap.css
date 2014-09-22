@@ -47,6 +47,22 @@ template {
 a {
   background: transparent;
 }
+
+#map {
+  /*position: absolute;*/
+
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+}
+
+.post_body{
+    background-color: white;
+    width: 70%;
+    margin: auto;
+
+}
 a:active,
 a:hover {
   outline: 0;
@@ -3917,7 +3933,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-nav > li > a {
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
   line-height: 23px;
 }
 @media (max-width: 767px) {
@@ -4055,19 +4071,19 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-btn {
   margin-top: 13.5px;
-  margin-bottom: 13.5px;
+  margin-bottom: 0px;
 }
 .navbar-btn.btn-sm {
   margin-top: 17px;
-  margin-bottom: 17px;
+  margin-bottom: 0px;
 }
 .navbar-btn.btn-xs {
   margin-top: 21px;
-  margin-bottom: 21px;
+  margin-bottom: 0px;
 }
 .navbar-text {
   margin-top: 20.5px;
-  margin-bottom: 20.5px;
+  margin-bottom: 0px;
 }
 @media (min-width: 768px) {
   .navbar-text {
@@ -6175,6 +6191,7 @@ button.close {
   border: none;
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+   margin-bottom: 0px;
 }
 .navbar-brand {
   font-size: 24px;

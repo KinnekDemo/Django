@@ -24,4 +24,4 @@ class NewComment(ModelForm):
 
     class Meta:
         model = Annotate
-        exclude = ('post', 'voted', )
+        exclude = ('total_votes', 'up_votes', 'down_votes', 'thumb_up', 'thumb_down', 'post', 'author', )

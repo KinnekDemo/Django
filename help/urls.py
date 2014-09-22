@@ -18,7 +18,12 @@ urlpatterns = patterns('',
     url(r'^register/$', 'fix_it.views.register', name='register'),
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
     url(r'^view_posts/$', 'fix_it.views.view_posts', name='view_posts'),
-    url(r'^(?P<comment_id>\w+)/$', 'fix_it.views.up_vote', name='up_vote'),
+    url(r'^up_vote/(?P<comment_id>\w+)/$', 'fix_it.views.up_vote', name='up_vote'),
+    url(r'^down_vote/(?P<comment_id>\w+)/$', 'fix_it.views.down_vote', name='down_vote'),
+    url(r'^new_comment/(?P<post_id>\w+)$', 'fix_it.views.new_comment', name='new_comment'),
+    url(r'^leaderboard/$', 'fix_it.views.leaderboard', name='leaderboard'),
+
+
     #  # Generic view to vote on Link objects
     # (r'^links/(?P<object_id>\d+)/(?P<direction>up|down|clear)vote/?$',
     #     vote_on_object, dict(model=Link,

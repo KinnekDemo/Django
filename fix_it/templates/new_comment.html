@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in new_comment %}
+
+        <h5>How can you help?</h5> <br>
+            <p>Here's the post again to help.</p>
+            <li>{{ post.body }}</li>
+        {{ field }} <br>
+        {% endfor %}
+      <input type="submit" value="Submit comment" />
+    </form>
+{% endblock %}

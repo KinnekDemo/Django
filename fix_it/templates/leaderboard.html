@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3>Here's who gets the most out of the community</h3>
+    <ol>
+    {% for person in users_with_most_posts %}
+        <li>{{ person.username }}</li>
+    {% endfor %}
+    </ol>
+
+    <h3>Here are the users with the most popular posts</h3>
+    <ol>
+    {% for person in users_with_most_comments %}
+        <li>{{ person.author }}</li>
+    {% endfor %}
+    </ol>
+
+    <h3>Test leaderboard</h3>
+    <ol>
+    {% for person in most_comments %}
+        <li>{{ person.author }}</li>
+    {% endfor %}
+    </ol>
+
+
+
+
+
+{% endblock %}
