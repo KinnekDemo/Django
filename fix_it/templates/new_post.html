@@ -2,9 +2,13 @@
 
 {% block content %}
 <h4>Fill out the fields. Let the community take care of the rest.</h4>
+
     <form enctype="multipart/form-data" method="POST">
         {% csrf_token %}
-        {{ new_post.as_ul }}
+        {% for field in new_post %}
+        <h5>{{ field.name }}</h5>
+        {{ field }}
+        {% endfor %}<br>
         <input type="submit" value="Submit post" />
     </form>
 {% endblock content %}

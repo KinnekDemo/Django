@@ -1,25 +1,46 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 
 {% block content %}
-    {# Wrap this in a div#}
-   <h3 id=style="text-align: center">{{ user.username }}, here are your posts</h3>
+{# Wrap this in a div#}
     {% for post in posts %}
-    <div class="post_body">
-        <h3>{{ post.title }}</h3>
+        <div class="post_body">
+            <h3>{{ post.title }}</h3>
+
         {% if post.image %}
-        <img src="{{ post.image.url }}">
-            <br>
-            <br>
+            <img src="{{ post.image.url }}" alt="/Users/GKadillak/Projects/help/fix_it/static/media/img/mk.jpg"> <br><br>
         {% endif %}
 
-        <p>{{ post.body }}</p>
+        <p style="text-align: left"><strong>{{ post.body }}</strong></p>
+
+        _________________________________________________________________________________ <br>
 
         {% for help in post.comments.all %}
-            {{ user.username }} says:<br>
-            <li>{{ help.comment }}</li>
-        {% endfor %}
-    </div>
+            <div>
 
+            {# Show thumb up, thumb down, or both depending on vote boolean#}
+            {% if help.thumb_up %}
+                <a href="{% url 'down_vote' help.id %}" class="down_or_up" style="margin-left 20px"><img src="{% static 'img/arrow_down.png' %}" style="width: 15px; height: 14px"></a>
+                <div class="show_votes">{{ help.get_votes }}</div>
+            {% elif help.thumb_down %}
+                <a href="{% url 'up_vote' help.id %}" class="down_or_up" style="margin-left: 20px"><img src="{% static 'img/arrow_up.png' %}" style="width: 16px; height: 18px"></a>
+                <div class="show_votes">{{ help.get_votes }}</div>
+            {% else %}
+                <a href="{% url 'up_vote' help.id %}" class="down_or_up" style="margin-left: 20px"><img src="{% static 'img/arrow_up.png' %}" style="width: 15px; height: 14px"></a>
+
+                <a href="{% url 'down_vote' help.id %}" class="down_or_up"><img src="{% static 'img/arrow_down.png' %}" style="width: 15px; height: 14px"></a>
+                <div class="show_votes">{{ help.get_votes }}</div>
+            {% endif %}
+            <div style="text-align: left">{{ help.author }} says:<br>
+            <p style="display: inline">{{ help.comment }}</p>
+            </div>
+
+            </div> <br>
+        {% endfor %}
+
+    <a href="{% url 'new_comment' post.id %}">Help fix this problem!</a>
+    </div>
     {% endfor %}
+
 {% endblock %}

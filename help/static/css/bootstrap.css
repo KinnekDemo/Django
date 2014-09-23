@@ -60,9 +60,28 @@ a {
 .down_or_up {
     float: left;
     position: relative;
-    margin-left: 10px;
+    margin-left: 7px;
 
 }
+
+.show_votes {
+    float: left;
+    position: relative;
+    left: -50px;
+    top: 3px;
+}
+
+.glyph-front {
+    text-align: center;
+    top: -100px;
+    position: relative;
+    margin-left: 30px;
+    width: 20%;
+    height: 300px;
+
+}
+
+
 
 .post_body{
     background-color: white;
@@ -73,6 +92,25 @@ a {
     text-align: center;
 
 }
+
+.middle-div {
+    text-align: center;
+    margin-left: 40%;
+    top: -350px;
+    position: relative;
+    width: 200px;
+    height: 300px
+
+}
+
+.right-div {
+    text-align: center;
+    margin-left: 72.5%;
+    top: -650px;
+    position: relative;
+    width: 200px;
+}
+
 a:active,
 a:hover {
   outline: 0;
