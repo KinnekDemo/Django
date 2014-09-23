@@ -50,17 +50,27 @@ a {
 
 #map {
   /*position: absolute;*/
-
+  left: 15%;
   top:0;
   bottom:0;
   right:0;
-  left:0;
+}
+
+
+.down_or_up {
+    float: left;
+    position: relative;
+    margin-left: 10px;
+
 }
 
 .post_body{
     background-color: white;
-    width: 70%;
+    width: 80%;
     margin: auto;
+    margin-bottom: 30px;
+    border: 1px solid;
+    text-align: center;
 
 }
 a:active,
@@ -238,6 +248,7 @@ th {
   }
   img {
     max-width: 100% !important;
+
   }
   p,
   h2,
@@ -4551,8 +4562,11 @@ a.list-group-item.active > .badge,
 .jumbotron {
   padding: 30px;
   margin-bottom: 30px;
-  color: inherit;
+  color: black;
   background-color: #f9f9f9;
+  background-image: url(../img/plumber_help.jpg);
+  background-position: 50% 10%;
+  -webkit-background-size: auto;
 }
 .jumbotron h1,
 .jumbotron .h1 {
@@ -4576,6 +4590,7 @@ a.list-group-item.active > .badge,
   .jumbotron {
     padding-top: 48px;
     padding-bottom: 48px;
+
   }
   .container .jumbotron {
     padding-left: 60px;

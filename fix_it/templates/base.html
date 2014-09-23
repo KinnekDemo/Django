@@ -26,7 +26,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{% url 'front' %}">Home</a>
+      <a class="navbar-brand" href="{% url 'front' %}">Life<strong>Overflow</strong></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -34,8 +34,8 @@
       <ul class="nav navbar-nav">
 
           {% if user.is_authenticated %}
-        <li class="active"><a href="{% url 'new_post' %}">Make a new post</a></li>
-        <li class="active"><a href="{% url 'view_posts' %}">View posts</a></li>
+        <button class="btn btn-default navbar-btn"><a href="{% url 'new_post' %}">Make a new post</a></button>
+        <button class="btn btn-default navbar-btn"><a href="{% url 'view_posts' %}">View posts</a></button>
 
           {% else %}
           <li class="active"><a href="{% url 'register' %}">Register or sign in!</a></li>
@@ -91,7 +91,7 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-<div style="background-color: #e9eaed; margin-top: 0px">
+<div style="background-color: #F8F8F8 ; margin-top: 0">
 {% block content %}{% endblock %}
 
 </div>

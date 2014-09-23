@@ -9,37 +9,46 @@ from geopy.geocoders import Nominatim
 
 
 def front(request):
-    posts = Post.objects.all()
-    # certain_post = Post.objects.get(id=1)
-    # comments = Annotate.objects.all()
+    posts_with_location = []
+    for post in Post.objects.all():
+        if post.location:
+            posts_with_location.append(post)
     data = {
-        'posts': posts,
-        # 'comments': comments,
+        'posts_with_location': posts_with_location,
     }
-    # Trying out folium
-    # geolocator = Nominatim()
-    # for post in posts:
-    #     location = geolocator.geocode(post.location)
-    #     map_osm = folium.Map(location=[45.5236, -122.6750])
-    #     map_osm.simple_marker([location.latitude], [location.longitude], popup=post.title)
-    #     map_osm.create_map(path='testmap.html')
-
-    # location = geolocator.geocode(certain_post.location)
-    # map_osm = folium.Map(location=[45.5236, -122.6750])
-    # map_osm.simple_marker([location.latitude, location.longitude], popup='Test time!')
-    # map_osm.create_map(path='testmap.html')
 
     return render(request, 'home.html', data)
 
+def test_markers(request):
+    data = {
+        'posts': Post.objects.all()
+    }
 
-# @login_required
+    return render(request, 'testmap.html', data)
+
+
+def view_specific_post(request, post_id):
+    data = {
+        'post': Post.objects.filter(id=post_id)
+    }
+
+    return render(request, 'view_specific_post.html', data)
+
+
+#@login_required
 def new_post(request):
     data = {'new_post': NewPost()}
     if request.method == "POST":
         form = NewPost(request.POST, request.FILES)
         if form.is_valid():
             user = request.user
-            Post.objects.create(author=user, body=form.cleaned_data['body'], image=form.cleaned_data['image'])
+
+            # Store the latitude and longitude of location if given
+            geolocator = Nominatim()
+            location = geolocator.geocode(form.cleaned_data['location'])
+            Post.objects.create(author=user, body=form.cleaned_data['body'], image=form.cleaned_data['image'],
+                                location=form.cleaned_data['location'], latitude=location.latitude,
+                                longitude=location.longitude, title=form.cleaned_data['title'])
     else:
         return render(request, 'new_post.html', data)
 
@@ -49,7 +58,7 @@ def new_post(request):
 
 def profile(request):
     data = {
-        'posts': Post.objects.filter(author=request.user)
+        'posts': Post.objects.filter(author=request.user.id)
     }
     return render(request, 'profile.html', data)
 

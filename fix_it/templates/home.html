@@ -4,60 +4,31 @@
 {% block content %}
 <div class="jumbotron">
   <div class="container">
-      <h1>LifeOverflow</h1>
+      <h1>life<strong>Overflow</strong></h1>
       <p style="text-align: center">Help a friend. Become a professional.</p>
-      <p style="text-align: center"><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
+{#      <p style="text-align: center"><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>#}
   </div>
 </div>
-
-{# Wrap this in a div#}
-    <div class="post_body">
-    {% for post in posts %}
-        <h3>{{ post.title }}</h3>
-
-        {% if post.image %}
-        <img src="{{ post.image.url }}" alt="/Users/GKadillak/Projects/help/fix_it/static/media/img/mk.jpg">
-            <br>
-            <br>
-        {% endif %}
-
-        <p>{{ post.body }}</p>
-
-        {% for help in post.comments.all %}
-            <div>
-            {% if help.thumb_up %}
-                <a href="{% url 'down_vote' help.id %}" style="float: left; position: relative"><img src="{% static 'img/arrow_down.png' %}" style="width: 15px; height: 14px"></a>{{ help.up_votes }}
-            {% elif help.thumb_down %}
-                <a href="{% url 'up_vote' help.id %}" style="float: left"><img src="{% static 'img/arrow_up.png' %}" style="width: 16px; height: 18px"></a>{{ help.up_votes }}
-            {% else %}
-                <a href="{% url 'up_vote' help.id %}" style="float: left"><img src="{% static 'img/arrow_up.png' %}" style="width: 15px; height: 14px"></a>{{ help.up_votes }}
-
-                <a href="{% url 'down_vote' help.id %}" style="float: left"><img src="{% static 'img/arrow_down.png' %}" style="width: 15px; height: 14px"></a>{{ help.up_votes }}
-            {% endif %}
-            {{ help.author }} says:<br>
-            <p style="display: inline">{{ help.comment }}</p>
-
-            {# Show thumb up, thumb down, or both depending on vote boolean#}
-
-            </div> <br>
-        {% endfor %}
-
-    <a href="{% url 'new_comment' post.id %}">Help fix this problem!</a>
-
-    {% endfor %}
+    <div class="well">
+        <p>Here is a paragraph...Here is a paragraph...Here is a paragraph...Here is a paragraph...Here is a paragraph...</p>
     </div>
 
-<div id="map" style="width: 960px; height: 500px"></div>
+
+<div class="well" id="map" style="width: 900px; height: 400px"></div>
 <script>
-var map = L.map('map').setView([45.5236, -122.675], 10);
+var map = L.map('map').setView([39.055833, -95.689444], 4);
 
 L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18,
     attribution: 'Map data (c) <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-var marker_1 = L.marker([40.5727615357, -105.119423786]);
-marker_1.bindPopup("Test time!");
-map.addLayer(marker_1)
+{% for post in posts_with_location %}
+    var marker_{{ post.id }} = L.marker([{{ post.latitude }}, {{ post.longitude }}]);
+    marker_{{ post.id }}.bindPopup("<a href=\"{% url 'view_specific_post' post.id %}\">{{ post.title }}</a>");
+    map.addLayer(marker_{{ post.id }});
+{% endfor %}
+
+
 </script>
 {% endblock %}

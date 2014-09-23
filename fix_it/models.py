@@ -8,6 +8,8 @@ class Post(models.Model):
     image = models.ImageField(upload_to='img', blank=True, null=True)
     author = models.ForeignKey(User, related_name='posts', default='')
     location = models.CharField(max_length=50, null=True)
+    latitude = models.FloatField(null=True)
+    longitude = models.FloatField(null=True)
 
 
     def __unicode__(self):
@@ -23,6 +25,10 @@ class Annotate(models.Model):
     down_votes = models.SmallIntegerField(default=0)
     thumb_up = models.BooleanField(default=False)
     thumb_down = models.BooleanField(default=False)
+
+    def get_votes(self):
+        total_votes = self.up_votes - self.down_votes
+        return total_votes
 
 
     def __unicode__(self):

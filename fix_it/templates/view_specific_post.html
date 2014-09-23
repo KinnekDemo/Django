@@ -3,19 +3,19 @@
 
 {% block content %}
 {# Wrap this in a div#}
-    {% for post in posts %}
+    {% for article in post %}
         <div class="post_body">
-            <h3>{{ post.title }}</h3>
+            <h3>{{ article.title }}</h3>
 
-        {% if post.image %}
-            <img src="{{ post.image.url }}" alt="/Users/GKadillak/Projects/help/fix_it/static/media/img/mk.jpg"> <br><br>
+        {% if article.image %}
+            <img src="{{ article.image.url }}" alt="/Users/GKadillak/Projects/help/fix_it/static/media/img/mk.jpg"> <br><br>
         {% endif %}
 
-        <p style="text-align: left"><strong>{{ post.body }}</strong></p>
+        <p style="text-align: left"><strong>{{ article.body }}</strong></p>
 
         _________________________________________________________________________________ <br>
 
-        {% for help in post.comments.all %}
+        {% for help in article.comments.all %}
             <div>
 
             {# Show thumb up, thumb down, or both depending on vote boolean#}
@@ -38,7 +38,7 @@
             </div> <br>
         {% endfor %}
 
-    <a href="{% url 'new_comment' post.id %}">Help fix this problem!</a>
+    <a href="{% url 'new_comment' article.id %}">Help fix this problem!</a>
     </div>
     {% endfor %}
 

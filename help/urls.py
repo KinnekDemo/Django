@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     url(r'^down_vote/(?P<comment_id>\w+)/$', 'fix_it.views.down_vote', name='down_vote'),
     url(r'^new_comment/(?P<post_id>\w+)$', 'fix_it.views.new_comment', name='new_comment'),
     url(r'^leaderboard/$', 'fix_it.views.leaderboard', name='leaderboard'),
+    url('^view_posts/(?P<post_id>\w+)$', 'fix_it.views.view_specific_post', name='view_specific_post')
 
 
     #  # Generic view to vote on Link objects

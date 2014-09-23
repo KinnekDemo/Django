@@ -17,7 +17,7 @@ class NewPost(ModelForm):
 
     class Meta:
         model = Post
-        exclude = ('author',)
+        exclude = ('author', 'latitude', 'longitude')
 
 
 class NewComment(ModelForm):
