@@ -25,6 +25,7 @@ urlpatterns = patterns('',
     url('^view_posts/(?P<post_id>\w+)$', 'fix_it.views.view_specific_post', name='view_specific_post')
 
 
+
     #  # Generic view to vote on Link objects
     # (r'^links/(?P<object_id>\d+)/(?P<direction>up|down|clear)vote/?$',
     #     vote_on_object, dict(model=Link,
@@ -36,3 +37,6 @@ urlpatterns = patterns('',
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += patterns('',
+        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+    )
