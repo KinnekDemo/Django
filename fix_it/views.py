@@ -18,6 +18,7 @@ def front(request):
 
     return render(request, 'home.html', data)
 
+
 def test_markers(request):
     data = {
         'posts': Post.objects.all()
