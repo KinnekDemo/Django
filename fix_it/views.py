@@ -4,7 +4,6 @@ from django.db.models import Count
 from django.shortcuts import render, redirect
 from fix_it.forms import NewPost, NewComment
 from fix_it.models import Post, Annotate
-import folium
 from geopy.geocoders import Nominatim
 
 
