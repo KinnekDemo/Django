@@ -15,28 +15,28 @@
 
         _________________________________________________________________________________ <br>
 
-        {% for help in article.comments.all %}
-            <div>
-
+{#        {% for help in article.comments.all %}#}
+{#            <div>#}
+{##}
             {# Show thumb up, thumb down, or both depending on vote boolean#}
-            {% if help.thumb_up %}
-                <a href="{% url 'down_vote' help.id %}" class="down_or_up"><img src="{% static 'img/arrow_down.png' %}" style="width: 15px; height: 14px"></a>
-                <div style="float: left; position: absolute">{{ help.get_votes }}</div>
-            {% elif help.thumb_down %}
-                <a href="{% url 'up_vote' help.id %}" class="down_or_up"><img src="{% static 'img/arrow_up.png' %}" style="width: 16px; height: 18px"></a>
-                <div style="float: left; position: absolute">{{ help.get_votes }}</div>
-            {% else %}
-                <a href="{% url 'up_vote' help.id %}" class="down_or_up"><img src="{% static 'img/arrow_up.png' %}" style="width: 15px; height: 14px"></a>
-
-                <a href="{% url 'down_vote' help.id %}" class="down_or_up"><img src="{% static 'img/arrow_down.png' %}" style="width: 15px; height: 14px"></a>
-                <div style="float: left; position: absolute">{{ help.get_votes }}</div>
-            {% endif %}
-            <div style="text-align: left">{{ help.author }} says:<br>
-            <p style="display: inline">{{ help.comment }}</p>
-            </div>
-
-            </div> <br>
-        {% endfor %}
+{#            {% if help.thumb_up %}#}
+{#                <a href="{% url 'down_vote' help.id %}" class="down_or_up"><img src="{% static 'img/arrow_down.png' %}" style="width: 15px; height: 14px"></a>#}
+{#                <div style="float: left; position: absolute">{{ help.get_votes }}</div>#}
+{#            {% elif help.thumb_down %}#}
+{#                <a href="{% url 'up_vote' help.id %}" class="down_or_up"><img src="{% static 'img/arrow_up.png' %}" style="width: 16px; height: 18px"></a>#}
+{#                <div style="float: left; position: absolute">{{ help.get_votes }}</div>#}
+{#            {% else %}#}
+{#                <a href="{% url 'up_vote' help.id %}" class="down_or_up"><img src="{% static 'img/arrow_up.png' %}" style="width: 15px; height: 14px"></a>#}
+{##}
+{#                <a href="{% url 'down_vote' help.id %}" class="down_or_up"><img src="{% static 'img/arrow_down.png' %}" style="width: 15px; height: 14px"></a>#}
+{#                <div style="float: left; position: absolute">{{ help.get_votes }}</div>#}
+{#            {% endif %}#}
+{#            <div style="text-align: left">{{ help.author }} says:<br>#}
+{#            <p style="display: inline">{{ help.comment }}</p>#}
+{#            </div>#}
+{##}
+{#            </div> <br>#}
+{#        {% endfor %}#}
 
     <a href="{% url 'new_comment' article.id %}">Help fix this problem!</a>
     </div>

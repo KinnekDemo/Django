@@ -11,7 +11,6 @@ class Post(models.Model):
     latitude = models.FloatField(null=True)
     longitude = models.FloatField(null=True)
 
-
     def __unicode__(self):
         return "{}".format(self.title)
 
@@ -19,20 +18,21 @@ class Post(models.Model):
 class Annotate(models.Model):
     comment = models.TextField()
     post = models.ForeignKey(Post, related_name='comments')
-    author = models.ForeignKey(User, related_name='annotations', default='1', blank=True, null=True)
-    total_votes = models.IntegerField(default=0)
-    up_votes = models.SmallIntegerField(default=0)
-    down_votes = models.SmallIntegerField(default=0)
-    thumb_up = models.BooleanField(default=False)
-    thumb_down = models.BooleanField(default=False)
-
-    def get_votes(self):
-        total_votes = self.up_votes - self.down_votes
-        return total_votes
-
+    author = models.ForeignKey(User, related_name='comments', default='1', blank=True, null=True)
+    user_like = models.ForeignKey(User, related_name='comments')
 
     def __unicode__(self):
-        return "{}".format(self.post)
+        return "{}".format(self.author)
+
+
+class Like(models.Model):
+    user_liked = models.BooleanField(default=False)
+    like_sum = models.IntegerField(default=0)
+    like_bool = models.ForeignKey(User, related_name='likes')
+    liked_comment = models.ForeignKey(Annotate, related_name='likes')
+
+    def __unicode__(self):
+        return "{}".format(self.user)
 
 
 class Tag(models.Model):

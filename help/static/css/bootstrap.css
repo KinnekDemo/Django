@@ -93,6 +93,11 @@ a {
 
 }
 
+.wrapper {
+    margin: auto;
+    width: 1100px;
+}
+
 .middle-div {
     text-align: center;
     margin-left: 40%;
@@ -4605,13 +4610,14 @@ a.list-group-item.active > .badge,
   background-image: url(../img/plumber_help.jpg);
   background-position: 50% 10%;
   -webkit-background-size: auto;
+  height: 350px
 }
 .jumbotron h1,
 .jumbotron .h1 {
   color: #444444;
 }
-.jumbotron p {
-  margin-bottom: 15px;
+.jumbotron p
+  margin-bottom: 15%;
   font-size: 20px;
   font-weight: 200;
 }
@@ -4636,7 +4642,8 @@ a.list-group-item.active > .badge,
   }
   .jumbotron h1,
   .jumbotron .h1 {
-    font-size: 58.5px;
+    font-size: 80px;
+
   }
 }
 .thumbnail {

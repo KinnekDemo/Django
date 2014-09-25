@@ -3,10 +3,10 @@
 
 {% block content %}
 {# Cover photo with register button if not signed in #}
-<div class="jumbotron">
-  <div class="container">
+<div class="jumbotron" style="height: 415px">
+  <div class="container" style="position: relative;">
       <h1>life<strong>Overflow</strong></h1>
-      <p style="text-align: center">Help a friend. Become a local super hero.</p>
+      <p style="text-align: center; font-size: 30px">Help a friend. Become a local super hero.</p>
       {% if user.is_authenticated %}
       {% else %}
       <p style="text-align: center"><a class="btn btn-primary btn-lg" role="button" href="{% url 'register' %}">
@@ -16,40 +16,34 @@
 </div>
 
 {# Icons on splash page #}
-   <div style="text-align: center; top: 450px; position: relative"><h4><strong>Find out where people need help closest to you.</strong></h4></div>
-<div style="display: inline">
-    <div class="glyph-front">
-        <img src="{% static 'img/map.svg' %}" style="width: 300px; height: 400px">
-        <h4 style="text-align: center; right: -20px; top: -50px; position: relative">Find problems in your area</h4>
+<div class="wrapper">
+    <div>
+        <h1 style="font-size: 30px; font-weight: 500px; margin:0px; padding:0px; padding-top:15px; color:black; ">
+            Concept of lifeOverflow
+        </h1>
+
     </div>
 
-    <div class="middle-div">
-        <img src="{% static 'img/pencil.svg' %}" style="width: 200px; height: 300px">
-        <h4 style="text-align: center; right: -25px top: -5px; position: relative">Propose a solution</h4>
-    </div>
-
-    <div class="right-div">
-        <img src="{% static 'img/heart.svg' %}" style="width: 230px; height: 330px">
-        <h4 style="text-align: center; top: -30px; right: -25px; position: relative">Feel the love</h4>
 </div>
+
 
 {# Set the map up#}
-<div id="map" style="width: 900px; height: 400px; margin-top: -500px"></div>
-</div>
-<script>
-var map = L.map('map').setView([39.055833, -95.689444], 4);
-
-L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: 'Map data (c) <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-{% for post in posts_with_location %}
-    var marker_{{ post.id }} = L.marker([{{ post.latitude }}, {{ post.longitude }}]);
-    marker_{{ post.id }}.bindPopup("<a href=\"{% url 'view_specific_post' post.id %}\">{{ post.title }}</a>");
-    map.addLayer(marker_{{ post.id }});
-{% endfor %}
-
-
-</script>
+{#<div id="map" style="width: 900px; height: 400px; margin-top: -500px"></div>#}
+{#</div>#}
+{#<script>#}
+{#var map = L.map('map').setView([39.055833, -95.689444], 4);#}
+{##}
+{#L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {#}
+{#    maxZoom: 18,#}
+{#    attribution: 'Map data (c) <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'#}
+{#{).addTo(map);#}
+{##}
+{#{% for post in posts_with_location %}#}
+{#    var marker_{{ post.id }} = L.marker([{{ post.latitude }}, {{ post.longitude }}]);#}
+{#    marker_{{ post.id }}.bindPopup("<a href=\"{% url 'view_specific_post' post.id %}\">{{ post.title }}</a>");#}
+{#    map.addLayer(marker_{{ post.id }});#}
+{#{% endfor %}#}
+{##}
+{##}
+{#</script>#}
 {% endblock %}

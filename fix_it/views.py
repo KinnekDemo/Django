@@ -105,30 +105,33 @@ def view_posts(request):
     return render(request, 'view_posts.html', data)
 
 
-def down_vote(request, comment_id):
-    comment = Annotate.objects.get(id=comment_id)
-    comment.thumb_up = False
-    comment.thumb_down = True
-    comment.down_votes += 1
-    comment.voted = True
-    comment.save()
-    # data = {
-    #     'comments': comments
-    # }
-    return redirect('/')
+# def down_vote(request, comment_id):
+#
+#     comment = Annotate.objects.get(id=comment_id)
+#     comment.thumb_up = False
+#     comment.thumb_down = True
+#     comment.down_votes += 1
+#     comment.voted = True
+#     comment.save()
+#     # data = {
+#     #     'comments': comments
+#     # }
+#     return redirect('/')
 
 
-def up_vote(request, comment_id):
-    comment = Annotate.objects.get(id=comment_id)
-    comment.thumb_down = False
-    comment.thumb_up = True
-    comment.up_votes += 1
-    comment.voted = True
-    comment.save()
-    # data = {
-    #     'comments': comments
-    # }
-    return redirect('/')
+# def up_vote(request, comment_id):
+#     comment = Annotate.objects.get(id=comment_id)
+#     user = User.objects.get(username=request.user)
+#     like = Like.objects.create(user_liked=user, like_sum+=1, )
+#     comment.thumb_down = False
+#     comment.thumb_up = True
+#     comment.up_votes += 1
+#     comment.voted = True
+#     comment.save()
+#     # data = {
+#     #     'comments': comments
+#     # }
+#     return redirect('/')
 
 
 def leaderboard(request):
