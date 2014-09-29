@@ -18,26 +18,16 @@ class Post(models.Model):
 class Annotate(models.Model):
     comment = models.TextField()
     post = models.ForeignKey(Post, related_name='comments')
-    author = models.ForeignKey(User, related_name='comments', default='1', blank=True, null=True)
-    user_like = models.ForeignKey(User, related_name='comments')
+    author = models.ForeignKey(User, related_name='comments')
+    like_count = models.SmallIntegerField(default=0);
 
     def __unicode__(self):
-        return "{}".format(self.author)
+        return "{} on {}".format(self.author, self.post)
 
 
 class Like(models.Model):
-    user_liked = models.BooleanField(default=False)
-    like_sum = models.IntegerField(default=0)
-    like_bool = models.ForeignKey(User, related_name='likes')
+    liked = models.OneToOneField(User, related_name='likes')
     liked_comment = models.ForeignKey(Annotate, related_name='likes')
 
     def __unicode__(self):
-        return "{}".format(self.user)
-
-
-class Tag(models.Model):
-    label = models.CharField(max_length=15)
-    post = models.ForeignKey(Post, related_name='tags')
-
-    def __unicode__(self):
-        return "{}".format(self.label)
+        return "{}".format(self.liked)

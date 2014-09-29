@@ -9,11 +9,14 @@ from geopy.geocoders import Nominatim
 
 def front(request):
     posts_with_location = []
+
     for post in Post.objects.all():
         if post.location:
             posts_with_location.append(post)
     data = {
         'posts_with_location': posts_with_location,
+        'user': request.user,
+        'gkadillak': 'gkadillak'
     }
 
     return render(request, 'home.html', data)
@@ -25,6 +28,7 @@ def test_markers(request):
     }
 
     return render(request, 'testmap.html', data)
+
 
 
 def view_specific_post(request, post_id):
@@ -106,7 +110,6 @@ def view_posts(request):
 
 
 # def down_vote(request, comment_id):
-#
 #     comment = Annotate.objects.get(id=comment_id)
 #     comment.thumb_up = False
 #     comment.thumb_down = True
@@ -119,19 +122,12 @@ def view_posts(request):
 #     return redirect('/')
 
 
-# def up_vote(request, comment_id):
-#     comment = Annotate.objects.get(id=comment_id)
-#     user = User.objects.get(username=request.user)
-#     like = Like.objects.create(user_liked=user, like_sum+=1, )
-#     comment.thumb_down = False
-#     comment.thumb_up = True
-#     comment.up_votes += 1
-#     comment.voted = True
-#     comment.save()
-#     # data = {
-#     #     'comments': comments
-#     # }
-#     return redirect('/')
+def up_vote(request, comment_id):
+    liked_comment = Annotate.objects.get(id=comment_id)
+    new_like = Like.objects.create(user_who_liked=request.user, liked_comment=liked_comment)
+    new_like.save()
+
+    return redirect('/')
 
 
 def leaderboard(request):
