@@ -19,7 +19,7 @@ class Annotate(models.Model):
     comment = models.TextField()
     post = models.ForeignKey(Post, related_name='comments')
     author = models.ForeignKey(User, related_name='comments')
-    like_count = models.SmallIntegerField(default=0);
+    like_count = models.SmallIntegerField(default=0)
 
     def __unicode__(self):
         return "{} on {}".format(self.author, self.post)

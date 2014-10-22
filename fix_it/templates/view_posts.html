@@ -16,7 +16,17 @@
         _________________________________________________________________________________ <br>
 
         {% for help in post.comments.all %}
-            <a href="{% url 'up_vote' help.id %}">Click here to upvote</a>wto
+            <div>
+                <a href="{% url 'up_vote' help.id %}" class="down_or_up" style="margin-left: 20px"><img src="{% static 'img/arrow_up.png    ' %}" style="width: 15px; height: 14px"></a>
+                <div class="show_votes" style="left: -5px">{{ help.get_votes }}</div>
+
+            {% endif %}
+            <div style="text-align: left">{{ help.author }} says:<br>
+            <p style="display: inline">{{ help.comment }}</p>
+            </div>
+
+            </div> <br>
+        {% endfor %}
 
     <a href="{% url 'new_comment' post.id %}">Help fix this problem!</a>
     </div>
