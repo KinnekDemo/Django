@@ -73,7 +73,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'USER': 'admin',
         'PASSWORD': 'root',
-        'HOST': 'mysql.kinnekdemo.runnable.io',
+        'HOST':  os.environ['MYSQL_HOST'],
         'PORT':3306,
         'NAME': 'help',
     }
