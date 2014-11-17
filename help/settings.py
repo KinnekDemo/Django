@@ -71,7 +71,7 @@ WSGI_APPLICATION = 'help.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'USER': 'root',
+        'USER': 'admin',
         'PASSWORD': 'root',
         'HOST': 'mysql.kinnekdemo.runnable.io',
         'PORT':3306,
